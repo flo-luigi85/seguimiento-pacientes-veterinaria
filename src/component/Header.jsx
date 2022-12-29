@@ -1,8 +1,4 @@
-function Header ({toma1Valor }) {
-
-    const variableHeader = true
-    
-    toma1Valor(variableHeader)
+function Header () {  
 
   return (
     <div>

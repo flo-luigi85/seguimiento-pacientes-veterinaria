@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"; //rafc
+import { useState, } from "react"; //rafc
 
 const Formulario = ({ pacientes, setPacientes }) => {
   const [nombre, setNombre] = useState("");
@@ -6,7 +6,6 @@ const Formulario = ({ pacientes, setPacientes }) => {
   const [email, setEmail] = useState("");
   const [fecha, setFecha] = useState("");
   const [sintomas, setSintomas] = useState("");
-
   const [error, setError] = useState(false);
 
   const handleSubmit = (e) => {
@@ -30,7 +29,16 @@ const Formulario = ({ pacientes, setPacientes }) => {
     };
 
     //console.log(objetoPaciente);
-    setPacientes(objetoPaciente);
+    setPacientes([...pacientes, objetoPaciente]);//Objeto inmutable
+
+    // Reiniciar el Form
+
+    setNombre('')
+    setPropietario('')
+    setEmail('')
+    setFecha('')
+    setSintomas('')
+
   };
 
   return (
@@ -44,11 +52,12 @@ const Formulario = ({ pacientes, setPacientes }) => {
         onSubmit={handleSubmit}
         className="bg-white shadow-md rounded-lg py-10 px-5 mb-10"
       >
-        {error && (
-          <div className="bg-red-800 text-white text-center p-3 uppercase font-bold rounded-md mb-3">
-            <p>Todos los campos son obligatorios</p>
-          </div>
-        )}
+        { error && 
+        (<div className="bg-red-800 text-white text-center p-3 uppercase font-bold mb-3 rounded-md">
+          <p>Todos los campos son obligatorios</p>
+
+        </div>)
+        }
         <div className="mb-5">
           <label
             htmlFor="mascota"
